@@ -16,9 +16,9 @@ jobs:
       - name: Copy files to EC2
         uses: appleboy/scp-action@v0.1.4
         with:
-          host: "13.113.178.94"     # ← クォート必須
-          username: "failover"      # ← クォート必須
+          host: "13.113.178.94"    
+          username: "failover"     
           port: 22
-          key: ${{ secrets.EC2_SECURITY_KEY }}  # ← secret はこの書き方固定
+          key: ${{ secrets.EC2_SECURITY_KEY }}
           source: "./"
           target: "/var/www/quonsuntory"
