@@ -60,8 +60,8 @@ function submitDestination() {
     body: "destination=" + encodeURIComponent(place),
   })
     .then((res) => res.text())
-    .then((text) =>  {
-      successMsg.textContent = "✓  送信完了！ご意見ありがとうございますう！";
+    .then((text) => {
+      successMsg.textContent = "✓  送信完了！ご意見ありがとうございます！";
       successMsg.style.display = "block";
       document.getElementById("destination").value = "";
 
