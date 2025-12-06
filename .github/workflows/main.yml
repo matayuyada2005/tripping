@@ -16,6 +16,6 @@ jobs:
         with:
           host: ${{ 13.113.178.94 }}
           username: ${{ failover }}
-          key: ${{ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINN+QAxaJsivv8zpouL11hdDWQmWj8xnOM71z2s6Pr/w yamac@DESKTOP-9EI6ST5 }}
+          key: ${{ secret.EC2_SECURITY_KEY }}
           source: "./*"
           target: "/var/www/quonsuntory"
