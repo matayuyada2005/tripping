@@ -1,3 +1,5 @@
+
+
 name: Deploy Static Website to EC2
 
 on:
@@ -22,3 +24,12 @@ jobs:
           key: ${{ secrets.EC2_SECURITY_KEY }}
           source: "./"
           target: "/var/www/quonsuntory"
+
+      - name: Debug secret exists?
+        run: |
+          if [ -z "${{ secrets.EC2_SECURITY_KEY }}" ]; then 
+            echo "🔴 Secret is EMPTY";
+          else 
+            echo "🟢 Secret is SET";
+          fi
+
