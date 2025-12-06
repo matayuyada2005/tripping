@@ -61,7 +61,7 @@ function submitDestination() {
   })
     .then((res) => res.text())
     .then((text) =>  {
-      successMsg.textContent = "✓  送信完了！ご意見ありがとうございます。";
+      successMsg.textContent = "✓  送信完了！ご意見ありがとうございます！";
       successMsg.style.display = "block";
       document.getElementById("destination").value = "";
 
