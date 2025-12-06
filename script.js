@@ -37,7 +37,6 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-
 // 旅先アンケート送信
 function submitDestination() {
   const place = document.getElementById("destination").value;
@@ -53,16 +52,13 @@ function submitDestination() {
   btnText.textContent = "送信中...";
   btn.disabled = true;
 
-  fetch(
-    "https://script.google.com/macros/s/AKfycbwfWtaFVzUhNU006rhCmnT1lLGggio0tTtfeLnHlKRF__ztkRHz7bJ3gOT-HNWPrSF5/exec",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: "destination=" + encodeURIComponent(place),
-    }
-  )
+  fetch("https://trip-worker.yourname.workers.dev", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: "destination=" + encodeURIComponent(place),
+  })
     .then((res) => res.text())
     .then((text) => {
       successMsg.textContent = "✓ 送信完了！ご意見ありがとうございます。";
@@ -154,7 +150,7 @@ const hamburger = document.getElementById("hamburger");
 const navMenu = document.getElementById("navMenu");
 
 hamburger.addEventListener("click", (e) => {
-  e.stopPropagation();  
+  e.stopPropagation();
   navMenu.classList.toggle("open");
 });
 
