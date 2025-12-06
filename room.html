@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>部屋割表</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <section id="room-auth" class="section fade-in">
+      <h2 class="section-title">🔐 部屋割表の確認</h2>
+      <p class="description">
+        こちらのページでは、研修旅行の<strong>部屋割表</strong>を確認できます。<br />
+        閲覧にはパスワードが必要です。
+      </p>
+
+      <div
+        class="card"
+        style="max-width: 380px; margin: 20px auto; padding: 25px"
+      >
+        <input
+          type="password"
+          id="passwordInput"
+          placeholder="パスワードを入力"
+          required
+        />
+        <button
+          onclick="checkPassword()"
+          class="btn-primary"
+          style="margin-top: 15px"
+        >
+          表示する
+        </button>
+      </div>
+
+      <p style="text-align: center; margin-top: 20px">
+        ← <a href="index.html">トップへ戻る</a>
+      </p>
+    </section>
+
+    <!-- 部屋割表（最初は非表示） -->
+    <section
+      id="room-table"
+      class="section fade-in"
+      style="display: none; margin-top: 40px"
+    >
+      <h2 class="section-title">🚪 部屋割表</h2>
+      <div class="card">
+        <table class="data-table">
+          <tr>
+            <th>男子</th>
+            <th>メンバー</th>
+          </tr>
+          <tr>
+            <td>101</td>
+            <td>稲垣　遥人 / 大沼　優弥 / 緒方　海斗 / 澤田　海翔</td>
+          </tr>
+          <tr>
+            <td>102</td>
+            <td>瀧本　渉 / 福澤　奎心 / 福士　潤 / 福士　諒</td>
+          </tr>
+          <tr>
+            <td>103</td>
+            <td>渡邊　祐斗 / 中井　映右 / 伊藤　澄 / 岩渕　哲朗</td>
+          </tr>
+          <tr>
+            <td>104</td>
+            <td>大亀　咲矢 / 近藤　楓馬 / 清野　朝陽</td>
+          </tr>
+          <tr>
+            <td>105</td>
+            <td>田中　雪斎 / 新田　涼太 / 深山　彰俊 / 山田　勇太</td>
+          </tr>
+          <tr>
+            <th>女子</th>
+            <th>メンバー</th>
+          </tr>
+          <tr>
+            <td>201</td>
+            <td>五十嵐　未咲 / 小野田　桃花 / 土居　叶実 / 飯田　璃音</td>
+          </tr>
+          <tr>
+            <td>202</td>
+            <td>青山　唯 / 九嶋　琴音 / 今田　百香 / 鈴木　美羽</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
