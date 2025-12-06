@@ -16,6 +16,6 @@ jobs:
         with:
           host: ${{ 13.113.178.94 }}
           username: ${{ failover }}
-          key: ${{ secret.EC2_PUBRIC_KEY }}
+          key: ${{ secret.EC2_SECURITY_KEY }}
           source: "./*"
           target: "/var/www/quonsuntory"
