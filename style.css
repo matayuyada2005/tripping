@@ -21,10 +21,7 @@ body {
   min-height: 100vh;
   padding-top: 70px;
 }
-.description {
-  text-align: center;
-  line-height: 1.6;
-}
+
 .hamburger {
   font-size: 2rem;
   cursor: pointer;

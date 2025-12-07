@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>部屋割表 - パスワード認証</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      .section {
+        max-width: 500px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .description {
+        text-align: center;
+        color: #2c3e50;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 2em;
+      }
+
+      #passwordInput {
+        width: 100%;
+        padding: 1em;
+        font-size: 1.1rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        transition: border-color 0.3s ease;
+        font-family: "Noto Serif JP", serif;
+        text-align: center;
+        box-sizing: border-box;
+      }
+
+      #passwordInput:focus {
+        outline: none;
+        border-color: var(--primary);
+      }
+
+      .btn-primary {
+        width: 100%;
+        padding: 1.2em;
+        font-size: 1.1rem;
+        font-weight: 600;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: "Noto Serif JP", serif;
+        margin-top: 15px;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(74, 144, 226, 0.5);
+      }
+
+      .back-link {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .back-link a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .back-link a:hover {
+        opacity: 0.7;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section id="room-auth" class="section fade-in">
+      <h2 class="section-title">🔐 部屋割表の確認</h2>
+      <p class="description">
+        こちらのページでは、研修旅行の<strong>部屋割表</strong>を確認できます。<br />
+        閲覧にはパスワードが必要です。
+      </p>
+
+      <div class="card" style="max-width: 380px; margin: 20px auto; padding: 25px">
+        <input
+          type="password"
+          id="passwordInput"
+          placeholder="パスワードを入力"
+          required
+        />
+        <button onclick="checkPassword()" class="btn-primary">
+          表示する
+        </button>
+      </div>
+
+      <p class="back-link">
+        ← <a href="index.html">トップへ戻る</a>
+      </p>
+    </section>
+
+    <script>
+      // フェードインアニメーション
+      const fadeElems = document.querySelectorAll(".fade-in");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      fadeElems.forEach((el) => observer.observe(el));
+
+      // パスワードチェック機能（GAS認証版）
+      function checkPassword() {
+        const input = document.getElementById("passwordInput").value;
+        const btn = document.querySelector(".btn-primary");
+
+        // 入力チェック
+        if (!input.trim()) {
+          alert("パスワードを入力してください");
+          return;
+        }
+
+        // ボタンを無効化して二重送信を防止
+        btn.textContent = "確認中...";
+        btn.disabled = true;
+
+        // Pythonに問い合わせ
+        fetch("https://passhash-auth.onrender.com/verify", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ password: input }),
+})
+.then((res) => res.json())
+.then((data) => {
+  if (data.result === "success") {
+    btn.textContent = "認証成功！";
+    setTimeout(() => {
+      window.location.href = "room.html";
+    }, 500);
+  } else {
+    alert("パスワードが違います");
+    document.getElementById("passwordInput").value = "";
+    document.getElementById("passwordInput").focus();
+    btn.textContent = "表示する";
+    btn.disabled = false;
+  }
+})
+.catch((err) => {
+  console.error("通信エラー:", err);
+  alert("通信に失敗しました。もう一度お試しください。");
+  btn.textContent = "表示する";
+  btn.disabled = false;
+});
+
+}
+      // Enterキーでも送信できるようにする
+      document.getElementById("passwordInput").addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+          checkPassword();
+        }
+      });
+    </script>
+  </body>
+</html>

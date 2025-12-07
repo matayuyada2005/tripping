@@ -1,1 +1,0 @@
-# school-trip-site-void
