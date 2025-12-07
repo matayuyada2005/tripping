@@ -1,4 +1,3 @@
-// フェードインアニメーション
 const fadeElems = document.querySelectorAll(".fade-in");
 const observer = new IntersectionObserver(
   (entries) => {
@@ -13,7 +12,6 @@ const observer = new IntersectionObserver(
 
 fadeElems.forEach((el) => observer.observe(el));
 
-// アコーディオン
 document.querySelectorAll(".accordion-button").forEach((button) => {
   button.addEventListener("click", () => {
     const content = button.nextElementSibling;
@@ -23,7 +21,6 @@ document.querySelectorAll(".accordion-button").forEach((button) => {
   });
 });
 
-// スムーススクロール
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     e.preventDefault();
@@ -37,8 +34,6 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-
-// 旅先アンケート送信
 function submitDestination() {
   const place = document.getElementById("destination").value;
   const btn = document.querySelector(".submit-btn");
@@ -83,7 +78,6 @@ function submitDestination() {
     });
 }
 
-// 感想・質問フォーム送信
 function submitFeedback() {
   const feedback = document.getElementById("feedback").value;
   const btn = document.querySelectorAll(".submit-btn")[1];
@@ -98,7 +92,6 @@ function submitFeedback() {
   btnText.textContent = "送信中...";
   btn.disabled = true;
 
-  // 実際の送信処理（Google Apps Scriptなど）
   setTimeout(() => {
     successMsg.textContent = "✓ 送信完了！ご意見ありがとうございます。";
     successMsg.style.display = "block";
@@ -113,7 +106,6 @@ function submitFeedback() {
   }, 1000);
 }
 
-// チェックボックスの状態を保存（LocalStorageを使用）
 document
   .querySelectorAll('.checklist-item input[type="checkbox"]')
   .forEach((checkbox) => {
@@ -131,17 +123,27 @@ document
 function checkPassword() {
   const input = document.getElementById("passwordInput").value;
 
-  // ★ パスワード（ここを変更して運用）
-  const correctPassword = "mizuguchi";
-
-  if (input === correctPassword) {
-    document.getElementById("room-auth").style.display = "none";
-    document.getElementById("room-table").style.display = "block";
-  } else {
-    alert("パスワードが違います");
-  }
+  fetch("https://passhash-auth.onrender.com/verify", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ password: input }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.result === "success") {
+        document.getElementById("room-auth").style.display = "none";
+        document.getElementById("room-table").style.display = "block";
+      } else {
+        alert("パスワードが違います");
+      }
+    })
+    .catch((err) => {
+      console.error("認証エラー:", err);
+      alert("通信エラーが発生しました。時間をおいて再度お試しください。");
+    });
 }
-// Enterキーでの送信対応
 document
   .getElementById("destination")
   .addEventListener("keypress", function (e) {
@@ -154,7 +156,7 @@ const hamburger = document.getElementById("hamburger");
 const navMenu = document.getElementById("navMenu");
 
 hamburger.addEventListener("click", (e) => {
-  e.stopPropagation();  
+  e.stopPropagation();
   navMenu.classList.toggle("open");
 });
 
@@ -170,7 +172,6 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// メニュータップしたら自動で閉じる（スマホUX向上）
 document.querySelectorAll(".nav-menu a").forEach((link) => {
   link.addEventListener("click", () => {
     navMenu.classList.remove("open");
