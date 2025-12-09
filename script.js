@@ -177,3 +177,27 @@ document.querySelectorAll(".nav-menu a").forEach((link) => {
     navMenu.classList.remove("open");
   });
 });
+
+const optionalList = document.getElementById("optional-list");
+const addBtn = document.getElementById("add-item-btn");
+const newItemInput = document.getElementById("new-item-text");
+
+let customIdCounter = 200; // ユーザー追加アイテム用のID
+
+addBtn.addEventListener("click", () => {
+  const text = newItemInput.value.trim();
+  if (text === "") return;
+
+  const id = `custom-item-${customIdCounter++}`;
+
+  const li = document.createElement("li");
+  li.className = "checklist-item";
+  li.innerHTML = `
+      <input type="checkbox" id="${id}" />
+      <label for="${id}">${text}</label>
+  `;
+
+  optionalList.appendChild(li);
+
+  newItemInput.value = "";
+});

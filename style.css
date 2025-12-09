@@ -337,13 +337,54 @@ body {
 }
 
 .checklist-category {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   background: var(--primary);
-  color: white;
-  padding: 0.3em 0.8em;
-  border-radius: 20px;
-  font-size: 0.8rem;
+  color: #fff;
+
+  /* バッジ幅を統一しつつ文字に余裕を持たせる */
+  width: 90px;
+  padding: 0.45em 0.6em;
+
+  border-radius: 999px; /* 最高に丸い、未来的デザイン */
+  
+  /* デバイスに応じてフォントが自動調整される */
+  font-size: clamp(10px, 0.9rem, 14px);
+  font-weight: 600;
+
+  /* 長文でも崩れないために折り返し許可 */
+  text-align: center;
+  line-height: 1.2;
+
+  /* “最後尾にきれいに寄る” を保証 */
   margin-left: auto;
+
+  /* 影と透明感で現代っぽさを追加 */
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+.add-item-box {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.add-item-box input {
+  flex: 1;
+  padding: 0.4em;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.add-item-box button {
+  background: var(--primary);
+  color: #fff;
+  padding: 0.4em 1em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 /* テーブル */

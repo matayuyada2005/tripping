@@ -144,8 +144,8 @@
               <div class="schedule-item">
                 <div class="schedule-time">終日</div>
                 <div class="schedule-detail">
-                  <strong>東京ディズニーランド自由行動</strong>
-                  <div class="schedule-location">東京ディズニーランド</div>
+                  <strong>東京ディズニーリゾート自由行動</strong>
+                  <div class="schedule-location">東京ディズニーリゾート</div>
                 </div>
               </div>
               <div class="schedule-item">
@@ -167,16 +167,38 @@
             <div class="schedule-day">
               <h3>3日目 - 12月19日（水）</h3>
               <div class="schedule-item">
-                <div class="schedule-time">09:00</div>
+                <div class="schedule-time">08:00</div>
                 <div class="schedule-detail">
                   <strong>ホテル出発</strong>
                 </div>
               </div>
               <div class="schedule-item">
-                <div class="schedule-time">10:00〜15:00</div>
+                <div class="schedule-time">08:40</div>
                 <div class="schedule-detail">
-                  <strong>都内自由散策</strong>
-                  <div class="schedule-location">浅草・スカイツリー周辺</div>
+                  <strong>浅草寺</strong>
+                  <div class="schedule-location">浅草寺</div>
+                </div>
+              </div>
+              <div class="schedule-item">
+                <div class="schedule-time">8:40~<br>11:00</div>
+                <div class="schedule-detail">
+                  <strong>浅草自由散策</strong>
+                  <div class="schedule-location">浅草</div>
+                </div>
+              </div>
+              <div class="schedule-item">
+                <div class="schedule-time">11:00</div>
+                <div class="schedule-detail">
+                  <strong>隅田川下り</strong>
+                  <div class="schedule-location"></div>
+                </div>
+              </div>
+              <strong>船で移動</strong>
+              <div class="schedule-item">
+                <div class="schedule-time">12:00</div>
+                <div class="schedule-detail">
+                  <strong>お台場海浜公園</strong>
+                  <div class="schedule-location"></div>
                 </div>
               </div>
               <div class="schedule-item">
@@ -223,11 +245,6 @@
                   <span class="checklist-category">必須</span>
                 </li>
                 <li class="checklist-item">
-                  <input type="checkbox" id="item4" />
-                  <label for="item4">モバイルバッテリー（機内持ち込み）</label>
-                  <span class="checklist-category">必須</span>
-                </li>
-                <li class="checklist-item">
                   <input type="checkbox" id="item5" />
                   <label for="item5">財布・現金（3万円程度推奨）</label>
                   <span class="checklist-category">必須</span>
@@ -247,27 +264,40 @@
                   <label for="item8">洗面用具（歯ブラシ・タオルなど）</label>
                   <span class="checklist-category">必須</span>
                 </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-button">
+            <span> 任意アイテム</span>
+            <span class="accordion-arrow">▼</span>
+          </button>
+          <div class="accordion-content">
+            <div class="card">
+              <ul class="checklist" id="optional-list">
+                <li class="checklist-item">
+                  <input type="checkbox" id="item4" />
+                  <label for="item4">モバイルバッテリー</label>
+                </li>
                 <li class="checklist-item">
                   <input type="checkbox" id="item9" />
                   <label for="item9">常備薬（必要な人）</label>
-                  <span class="checklist-category">必要に応じて</span>
-                </li>
-                <li class="checklist-item">
-                  <input type="checkbox" id="item10" />
-                  <label for="item10">カメラ（スマホでもOK）</label>
-                  <span class="checklist-category">任意</span>
                 </li>
                 <li class="checklist-item">
                   <input type="checkbox" id="item11" />
-                  <label for="item11">雨具（折りたたみ傘）</label>
-                  <span class="checklist-category">天候による</span>
+                  <label for="item11">雨具</label>
                 </li>
                 <li class="checklist-item">
                   <input type="checkbox" id="item12" />
-                  <label for="item12">防寒具（2月の東京は意外と寒い！）</label>
-                  <span class="checklist-category">推奨</span>
+                  <label for="item12">防寒具</label>
                 </li>
               </ul>
+              <div class="add-item-box">
+                <input type="text" id="new-item-text"
+                  placeholder="追加したいアイテムを入力" />
+                <button id="add-item-btn">追加</button>
+              </div>
             </div>
           </div>
         </div>
@@ -469,7 +499,7 @@
           <h4>中華料理 彩鳳</h4>
           <p>羽田空港第1ターミナル 3F マーケットプレイス | ☎ 03-5757-8839</p>
         </a>
-        
+
         <a
           href="https://www.psc-inc.co.jp/"
           target="_blank"
