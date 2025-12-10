@@ -19,6 +19,7 @@
 
 .auth_data{
   display:none;
+  visibility: hidden;
 }
 
 body {
