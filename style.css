@@ -17,17 +17,16 @@
   --bg-light: #ebf5fb;
 }
 
-.auth_data{
-  display:none;
-  visibility: hidden;
-}
-
 body {
   background: linear-gradient(180deg, #87ceeb 0%, #b0e0e6 50%, #e0f6ff 100%);
   font-family: "Noto Serif JP", serif;
   min-height: 100vh;
   padding-top: 70px;
   position: relative;
+}
+
+.auth_data{
+  display:none;
 }
 
 body::before {
@@ -42,7 +41,7 @@ body::before {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  opacity: 0.16; /* 画像の透明度 */
+  opacity: 1;
   pointer-events: none;
   z-index: 0;
 }
@@ -332,7 +331,6 @@ body::before {
   margin-top: 0.3em;
 }
 
-/* チェックリスト - 認知科学に基づいた色分け（オレンジ＝記憶とストレスの最適バランス） */
 .checklist {
   list-style: none;
   padding: 0;
@@ -370,7 +368,6 @@ body::before {
   word-break: break-word;
 }
 
-/* 必須アイテムはオレンジ色で強調（記憶に残りやすく適度なストレスを与える色） */
 .checklist-item:nth-child(1) label,
 .checklist-item:nth-child(2) label,
 .checklist-item:nth-child(3) label,
@@ -553,10 +550,13 @@ body::before {
   opacity: 0.7;
 }
 
-/* スマホ対応 - タッチターゲットサイズ最適化 */
 @media (max-width: 768px) {
   body {
     padding-top: 60px;
+  }
+  
+  body::before {
+    background-attachment: scroll;
   }
 
   .hero h1 {
@@ -676,7 +676,6 @@ body::before {
   }
 }
 
-/* 極小画面対応 */
 @media (max-width: 375px) {
   .hero h1 {
     font-size: 1.5rem;
