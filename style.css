@@ -12,6 +12,8 @@
   --accent: #ffd700;
   --success: #2ecc71;
   --warning: #f39c12;
+  --danger: #e74c3c;
+  --critical: #FF6B35;
   --bg-light: #ebf5fb;
 }
 
@@ -20,6 +22,24 @@ body {
   font-family: "Noto Serif JP", serif;
   min-height: 100vh;
   padding-top: 70px;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('images/tokyo-trip-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 0.16; /* 画像の透明度 */
+  pointer-events: none;
+  z-index: 0;
 }
 
 .hamburger {
@@ -59,11 +79,14 @@ body {
   }
 
   .nav-menu a {
-    padding: 0.8em;
-    font-size: 1rem;
+    padding: 1em;
+    font-size: 1.1rem;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
   }
 }
-/* 固定ナビゲーションバー */
+
 .navbar {
   position: fixed;
   top: 0;
@@ -117,9 +140,10 @@ body {
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
+  position: relative;
+  z-index: 1;
 }
 
-/* アニメーション */
 .fade-in {
   opacity: 0;
   transform: translateY(40px);
@@ -131,7 +155,6 @@ body {
   transform: translateY(0);
 }
 
-/* ヒーローセクション */
 .hero {
   background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 100%);
   padding: 4em 2em;
@@ -165,7 +188,6 @@ body {
   font-weight: 600;
 }
 
-/* セクションタイトル */
 .section {
   margin-bottom: 3em;
 }
@@ -180,7 +202,6 @@ body {
   letter-spacing: 0.1em;
 }
 
-/* カード */
 .card {
   background: white;
   padding: 2em;
@@ -209,7 +230,6 @@ body {
   font-size: 1.8rem;
 }
 
-/* アコーディオン */
 .accordion {
   background: white;
   border-radius: 16px;
@@ -232,6 +252,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 60px;
 }
 
 .accordion-button:hover {
@@ -263,7 +284,6 @@ body {
   padding: 2em;
 }
 
-/* スケジュールカード */
 .schedule-day {
   background: linear-gradient(135deg, #4a90e2 0%, #5dade2 100%);
   color: white;
@@ -307,7 +327,7 @@ body {
   margin-top: 0.3em;
 }
 
-/* チェックリスト */
+/* チェックリスト - 認知科学に基づいた色分け（オレンジ＝記憶とストレスの最適バランス） */
 .checklist {
   list-style: none;
   padding: 0;
@@ -317,9 +337,10 @@ body {
   display: flex;
   align-items: center;
   gap: 1em;
-  padding: 1em;
+  padding: 1.2em;
   border-bottom: 1px solid #e0e0e0;
   transition: background 0.3s ease;
+  min-height: 56px;
 }
 
 .checklist-item:hover {
@@ -331,63 +352,58 @@ body {
 }
 
 .checklist-item input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
+  flex-shrink: 0;
+}
+
+.checklist-item label {
+  flex: 1;
+  cursor: pointer;
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+/* 必須アイテムはオレンジ色で強調（記憶に残りやすく適度なストレスを与える色） */
+.checklist-item:nth-child(1) label,
+.checklist-item:nth-child(2) label,
+.checklist-item:nth-child(3) label,
+.checklist-item:nth-child(4) label,
+.checklist-item:nth-child(5) label,
+.checklist-item:nth-child(6) label,
+.checklist-item:nth-child(7) label,
+.checklist-item:nth-child(8) label {
+  color: var(--critical);
+  font-weight: 700;
 }
 
 .checklist-category {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--primary);
-  color: #fff;
-
-  /* バッジ幅を統一しつつ文字に余裕を持たせる */
-  width: 90px;
-  padding: 0.45em 0.6em;
-
-  border-radius: 999px; /* 最高に丸い、未来的デザイン */
-  
-  /* デバイスに応じてフォントが自動調整される */
-  font-size: clamp(10px, 0.9rem, 14px);
-  font-weight: 600;
-
-  /* 長文でも崩れないために折り返し許可 */
-  text-align: center;
-  line-height: 1.2;
-
-  /* “最後尾にきれいに寄る” を保証 */
-  margin-left: auto;
-
-  /* 影と透明感で現代っぽさを追加 */
-  backdrop-filter: blur(6px);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
-}
-
-.add-item-box {
-  margin-top: 10px;
-  display: flex;
-  gap: 8px;
-}
-
-.add-item-box input {
-  flex: 1;
-  padding: 0.4em;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-.add-item-box button {
-  background: var(--primary);
-  color: #fff;
+  display: inline-block;
+  color: white;
   padding: 0.4em 1em;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-weight: 600;
 }
 
-/* テーブル */
+.checklist-item:nth-child(1) .checklist-category,
+.checklist-item:nth-child(2) .checklist-category,
+.checklist-item:nth-child(3) .checklist-category,
+.checklist-item:nth-child(4) .checklist-category,
+.checklist-item:nth-child(5) .checklist-category,
+.checklist-item:nth-child(6) .checklist-category,
+.checklist-item:nth-child(7) .checklist-category,
+.checklist-item:nth-child(8) .checklist-category {
+  background: var(--critical);
+}
+
+.checklist-item .checklist-category {
+  background: var(--primary);
+}
+
 .data-table {
   width: 100%;
   border-collapse: collapse;
@@ -411,7 +427,6 @@ body {
   background: var(--bg-light);
 }
 
-/* リンクカード */
 .link-card {
   display: block;
   background: white;
@@ -422,6 +437,7 @@ body {
   color: #333;
   transition: all 0.3s ease;
   border-left: 4px solid var(--primary);
+  min-height: 80px;
 }
 
 .link-card:hover {
@@ -432,14 +448,15 @@ body {
 .link-card h4 {
   color: var(--primary);
   margin-bottom: 0.5em;
+  line-height: 1.4;
 }
 
 .link-card p {
   font-size: 0.9rem;
   color: #666;
+  line-height: 1.5;
 }
 
-/* フォーム */
 .input-group {
   margin-bottom: 1em;
 }
@@ -449,6 +466,7 @@ body {
   margin-bottom: 0.5em;
   color: #555;
   font-weight: 500;
+  line-height: 1.6;
 }
 
 .input-group input,
@@ -480,6 +498,7 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: "Noto Serif JP", serif;
+  min-height: 56px;
 }
 
 .submit-btn:hover {
@@ -497,7 +516,6 @@ body {
   animation: slideDown 0.3s ease;
 }
 
-/* フッター */
 .footer {
   background: linear-gradient(135deg, #2e86c1 0%, #3498db 100%);
   color: white;
@@ -513,39 +531,159 @@ body {
   justify-content: center;
   gap: 2em;
   margin-top: 1em;
+  flex-wrap: wrap;
 }
 
 .footer-links a {
   color: white;
   text-decoration: none;
   transition: opacity 0.3s ease;
+  padding: 0.5em;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
 
 .footer-links a:hover {
   opacity: 0.7;
 }
 
-/* レスポンシブ */
+/* スマホ対応 - タッチターゲットサイズ最適化 */
 @media (max-width: 768px) {
+  body {
+    padding-top: 60px;
+  }
+
   .hero h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    line-height: 1.3;
   }
 
-  .nav-menu {
-    gap: 0.3em;
+  .hero p {
+    font-size: 1.1rem;
+    line-height: 1.5;
   }
 
-  .nav-menu a {
-    font-size: 0.8rem;
-    padding: 0.4em 0.7em;
+  .hero {
+    padding: 2.5em 1.5em;
   }
 
-  .schedule-item {
-    grid-template-columns: 1fr;
+  .hero-date {
+    font-size: 0.95rem;
+    padding: 0.6em 1.2em;
   }
 
   .section-title {
     font-size: 1.5rem;
+    line-height: 1.4;
+  }
+
+  .card {
+    padding: 1.5em;
+  }
+
+  .card-header {
+    font-size: 1.2rem;
+    line-height: 1.4;
+  }
+
+  .accordion-button {
+    padding: 1.2em 1.5em;
+    font-size: 1.05rem;
+    line-height: 1.4;
+  }
+
+  .accordion-content.open {
+    padding: 1.5em;
+  }
+
+  .schedule-item {
+    grid-template-columns: 1fr;
+    gap: 0.5em;
+  }
+
+  .schedule-time {
+    font-size: 1rem;
+  }
+
+  .schedule-detail {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .checklist-item {
+    padding: 1em;
+    gap: 0.8em;
+    flex-wrap: nowrap;
+  }
+
+  .checklist-item label {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .checklist-category {
+    font-size: 0.75rem;
+    padding: 0.3em 0.7em;
+  }
+
+  .data-table {
+    font-size: 0.9rem;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 0.8em 0.5em;
+  }
+
+  .link-card {
+    padding: 1.2em;
+  }
+
+  .link-card h4 {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .link-card p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .input-group input,
+  .input-group textarea {
+    font-size: 16px;
+    padding: 0.9em;
+  }
+
+  .submit-btn {
+    font-size: 1rem;
+    padding: 1.1em;
+  }
+
+  .footer {
+    padding: 2em 1.5em;
+  }
+
+  .footer-links {
+    gap: 1em;
+    font-size: 0.9rem;
+  }
+}
+
+/* 極小画面対応 */
+@media (max-width: 375px) {
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  .accordion-button {
+    font-size: 1rem;
+    padding: 1em;
   }
 }
 

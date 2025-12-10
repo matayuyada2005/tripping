@@ -122,7 +122,12 @@
       );
 
       fadeElems.forEach((el) => observer.observe(el));
-
+      
+window.addEventListener("DOMContentLoaded", () => {
+  fetch("https://passhash-auth.onrender.com/ping").catch((e) => {
+    console.warn("ウォームアップ失敗:", e);
+  });
+});
       // パスワードチェック機能（GAS認証版）
       function checkPassword() {
         const input = document.getElementById("passwordInput").value;
