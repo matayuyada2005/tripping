@@ -17,6 +17,10 @@
   --bg-light: #ebf5fb;
 }
 
+.auth_data{
+  display:none;
+}
+
 body {
   background: linear-gradient(180deg, #87ceeb 0%, #b0e0e6 50%, #e0f6ff 100%);
   font-family: "Noto Serif JP", serif;
