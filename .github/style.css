@@ -18,15 +18,11 @@
 }
 
 body {
-  background: linear-gradient(180deg, #87ceeb 0%, #b0e0e6 50%, #e0f6ff 100%);
+  background: linear-gradient(180deg, rgba(135, 206, 235, 0.3) 0%, rgba(176, 224, 230, 0.3) 50%, rgba(224, 246, 255, 0.3) 100%);
   font-family: "Noto Serif JP", serif;
   min-height: 100vh;
-  padding-top: 70px;
+  padding-top: 120px;
   position: relative;
-}
-
-.auth_data{
-  display:none;
 }
 
 body::before {
@@ -41,7 +37,7 @@ body::before {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  opacity: 1;
+  opacity: 0.25;
   pointer-events: none;
   z-index: 0;
 }
@@ -148,6 +144,14 @@ body::before {
   z-index: 1;
 }
 
+.description {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1.5em;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
 .fade-in {
   opacity: 0;
   transform: translateY(40px);
@@ -165,7 +169,7 @@ body::before {
   border-radius: 20px;
   box-shadow: 0 20px 60px rgba(74, 144, 226, 0.3);
   text-align: center;
-  margin-bottom: 2em;
+  margin-bottom: 5em;
   border: 3px solid var(--primary);
 }
 
@@ -193,7 +197,7 @@ body::before {
 }
 
 .section {
-  margin-bottom: 3em;
+  margin-bottom: 5em;
 }
 
 .section-title {
@@ -202,8 +206,16 @@ body::before {
   margin-bottom: 1.5em;
   text-align: center;
   font-weight: 700;
-  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
   letter-spacing: 0.1em;
+  display: inline-block;
+  background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 100%);
+  padding: 0.8em 1.5em;
+  border-radius: 16px;
+  border: 3px solid var(--primary);
+  box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .card {
@@ -552,7 +564,7 @@ body::before {
 
 @media (max-width: 768px) {
   body {
-    padding-top: 60px;
+    padding-top: 90px;
   }
   
   body::before {
@@ -581,6 +593,7 @@ body::before {
   .section-title {
     font-size: 1.5rem;
     line-height: 1.4;
+    padding: 0.6em 1.2em;
   }
 
   .card {

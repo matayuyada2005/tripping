@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>部屋割表 - 研修旅行 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #4a90e2;
+      --primary-dark: #357abd;
+      --secondary: #5dade2;
+      --success: #2ecc71;
+      --bg-light: #ebf5fb;
+    }
+
+    body {
+      background: linear-gradient(180deg, #87ceeb 0%, #b0e0e6 50%, #e0f6ff 100%);
+      font-family: "Noto Serif JP", serif;
+      min-height: 100vh;
+      padding: 20px;
+      padding-top: 60px;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .section {
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      color: #1a5490;
+      margin-bottom: 1.5em;
+      text-align: center;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+      letter-spacing: 0.1em;
+    }
+
+    .card {
+      background: white;
+      padding: 2.5em;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      margin-bottom: 2em;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    /* テーブル */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 1em;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .data-table th {
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .data-table td:first-child {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.1rem;
+      width: 100px;
+      text-align: center;
+    }
+
+    .data-table tr:hover {
+      background: var(--bg-light);
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 2em;
+      font-size: 1.1rem;
+    }
+
+    .back-link a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.3s ease;
+      display: inline-block;
+      padding: 0.8em 2em;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .back-link a:hover {
+      opacity: 0.8;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 40px;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .card {
+        padding: 1.5em;
+      }
+
+      .data-table th,
+      .data-table td {
+        padding: 0.7em 0.5em;
+        font-size: 0.85rem;
+      }
+
+      .data-table td:first-child {
+        width: 50px;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    fetch("https://session-auth-gj7i.onrender.com/session-check", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.authenticated !== true) {
+          // セッションが無効なら認証ページへ
+          window.location.href = "index.html";
+        }
+        // 有効なら何もしない（表示される）
+      })
+      .catch((err) => {
+        console.error("セッション確認エラー:", err);
+        alert("セッション確認に失敗しました。再度アクセスしてください。");
+        window.location.href = "index.html"; 
+      });
+  });
+</script>
+
+
+<body>
+  <div class="container">
+    <!-- 部屋割表 -->
+    <section class="section">
+      <h2 class="section-title">🚪 部屋割表</h2>
+      <div class="card">
+        <table class="data-table">
+          <tr>
+            <th>男子</th>
+            <th>メンバー</th>
+          </tr>
+          <tr>
+            <td>859</td>
+            <td>稲垣　遥人 / 大沼　優弥 / 緒方　海斗 / 澤田　海翔</td>
+          </tr>
+          <tr>
+            <td>861</td>
+            <td>瀧本　渉 / 福澤　奎心 / 福士　潤 / 福士　諒</td>
+          </tr>
+          <tr>
+            <td>863</td>
+            <td>渡邊　祐斗 / 中井　映右 / 伊藤　澄 / 岩渕　哲朗</td>
+          </tr>
+          <tr>
+            <td>865</td>
+            <td>大亀　咲矢 / 近藤　楓馬 / 清野　朝陽</td>
+          </tr>
+          <tr>
+            <td>867</td>
+            <td>田中　雪斎 / 新田　涼太 / 深山　彰俊 / 山田　勇太</td>
+          </tr>
+          <tr>
+            <th>女子</th>
+            <th>メンバー</th>
+          </tr>
+          <tr>
+            <td>871</td>
+            <td>五十嵐　未咲 / 小野田　桃花 / 土居　叶実 / 飯田　璃音</td>
+          </tr>
+          <tr>
+            <td>873</td>
+            <td>青山　唯 / 九嶋　琴音 / 今田　百香 / 鈴木　美羽</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="back-link">
+        <a href="index.html">← トップへ戻る</a>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
