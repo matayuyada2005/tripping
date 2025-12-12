@@ -171,11 +171,7 @@ body::before {
   border-radius: 20px;
   box-shadow: 0 20px 60px rgba(74, 144, 226, 0.3);
   text-align: center;
-<<<<<<< HEAD
   margin-bottom: 10em;
-=======
-  margin-bottom: 5em;
->>>>>>> a6ddb9ac5b8e7c6d125c4f8dba364570d6a96c9f
   border: 3px solid var(--primary);
 }
 
