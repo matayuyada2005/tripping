@@ -16,7 +16,9 @@
   --critical: #FF6B35;
   --bg-light: #ebf5fb;
 }
-
+#becareful{
+  display: block;
+}
 body {
   background: linear-gradient(180deg, rgba(135, 206, 235, 0.3) 0%, rgba(176, 224, 230, 0.3) 50%, rgba(224, 246, 255, 0.3) 100%);
   font-family: "Noto Serif JP", serif;
