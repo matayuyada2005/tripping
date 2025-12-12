@@ -23,9 +23,14 @@
       .description {
         text-align: center;
         color: #2c3e50;
+        background-color: rgba(255, 255, 255, 0.9);
         font-size: 1.1rem;
         line-height: 1.8;
         margin-bottom: 2em;
+        padding: 1.5em;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       }
 
       #passwordInput {
@@ -85,18 +90,19 @@
   <body>
     <section id="room-auth" class="section fade-in">
       <h2 class="section-title">🔐 部屋割表の確認</h2>
+
       <p class="description">
         こちらのページでは、研修旅行の<strong>部屋割表</strong>を確認できます。<br />
         閲覧にはパスワードが必要です。
       </p>
 
-      <div class="card" style="max-width: 380px; margin: 20px auto; padding: 25px">
+      <div class="card"
+        style="max-width: 380px; margin: 20px auto; padding: 25px">
         <input
           type="password"
           id="passwordInput"
           placeholder="パスワードを入力"
-          required
-        />
+          required />
         <button onclick="checkPassword()" class="btn-primary">
           表示する
         </button>
@@ -107,79 +113,7 @@
       </p>
     </section>
 
-    <script>
-      // フェードインアニメーション
-      const fadeElems = document.querySelectorAll(".fade-in");
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      fadeElems.forEach((el) => observer.observe(el));
-      
-window.addEventListener("DOMContentLoaded", () => {
-  fetch("https://passhash-auth.onrender.com/ping").catch((e) => {
-    console.warn("ウォームアップ失敗:", e);
-  });
-});
-      // パスワードチェック機能（GAS認証版）
-      function checkPassword() {
-        const input = document.getElementById("passwordInput").value;
-        const btn = document.querySelector(".btn-primary");
-
-        // 入力チェック
-        if (!input.trim()) {
-          alert("パスワードを入力してください");
-          return;
-        }
-
-        // ボタンを無効化して二重送信を防止
-        btn.textContent = "確認中...";
-        btn.disabled = true;
-
-        // Pythonに問い合わせ
-        fetch("https://passhash-auth.onrender.com/verify", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({ password: input }),
-})
-.then((res) => res.json())
-.then((data) => {
-  if (data.result === "success") {
-    btn.textContent = "認証成功！";
-    setTimeout(() => {
-      window.location.href = "room.html";
-    }, 500);
-  } else {
-    alert("パスワードが違います");
-    document.getElementById("passwordInput").value = "";
-    document.getElementById("passwordInput").focus();
-    btn.textContent = "表示する";
-    btn.disabled = false;
-  }
-})
-.catch((err) => {
-  console.error("通信エラー:", err);
-  alert("通信に失敗しました。もう一度お試しください。");
-  btn.textContent = "表示する";
-  btn.disabled = false;
-});
-
-}
-      // Enterキーでも送信できるようにする
-      document.getElementById("passwordInput").addEventListener("keypress", function(e) {
-        if (e.key === "Enter") {
-          checkPassword();
-        }
-      });
+    <script src="script.js">
     </script>
   </body>
 </html>

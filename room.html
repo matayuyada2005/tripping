@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>部屋割表 - 研修旅行 2025</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700&display=swap"
-      />
-      <link rel="stylesheet" href="style.css"/>
-    <style>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>部屋割表 - 研修旅行 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
     * {
       margin: 0;
       padding: 0;
@@ -23,6 +20,13 @@
       --bg-light: #ebf5fb;
     }
 
+    body {
+      background: linear-gradient(180deg, #87ceeb 0%, #b0e0e6 50%, #e0f6ff 100%);
+      font-family: "Noto Serif JP", serif;
+      min-height: 100vh;
+      padding: 20px;
+      padding-top: 60px;
+    }
 
     .container {
       max-width: 900px;
@@ -149,14 +153,31 @@
       }
     }
   </style>
-  </head>
-  <body>
+</head>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    fetch("https://session-auth-gj7i.onrender.com/session-check", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.authenticated !== true) {
+          // セッションが無効なら認証ページへ
+          window.location.href = "index.html";
+        }
+        // 有効なら何もしない（表示される）
+      })
+      .catch((err) => {
+        console.error("セッション確認エラー:", err);
+        alert("セッション確認に失敗しました。再度アクセスしてください。");
+        window.location.href = "index.html"; 
+      });
+  });
+</script>
 
-    <!-- 固定ナビゲーション -->
-    <nav class="navbar">
-      <div class="nav-container">
-        <div class="nav-logo">研修旅行2025</div>
 
+<<<<<<< HEAD
         <!-- ハンバーガー追加 -->
         <div class="hamburger" id="hamburger">☰</div>
 
@@ -170,58 +191,58 @@
           <li><a href="index.html#rooms">部屋割</a></li>
           <li><a href="index.html#survey">アンケート</a></li>
         </ul>
+=======
+<body>
+  <div class="container">
+    <!-- 部屋割表 -->
+    <section class="section">
+      <h2 class="section-title">🚪 部屋割表</h2>
+      <div class="card">
+        <table class="data-table">
+          <tr>
+            <th>男子</th>
+            <th>メンバー</th>
+          </tr>
+          <tr>
+            <td>859</td>
+            <td>稲垣　遥人 / 大沼　優弥 / 緒方　海斗 / 澤田　海翔</td>
+          </tr>
+          <tr>
+            <td>861</td>
+            <td>瀧本　渉 / 福澤　奎心 / 福士　潤 / 福士　諒</td>
+          </tr>
+          <tr>
+            <td>863</td>
+            <td>渡邊　祐斗 / 中井　映右 / 伊藤　澄 / 岩渕　哲朗</td>
+          </tr>
+          <tr>
+            <td>865</td>
+            <td>大亀　咲矢 / 近藤　楓馬 / 清野　朝陽</td>
+          </tr>
+          <tr>
+            <td>867</td>
+            <td>田中　雪斎 / 新田　涼太 / 深山　彰俊 / 山田　勇太</td>
+          </tr>
+          <tr>
+            <th>女子</th>
+            <th>メンバー</th>
+          </tr>
+          <tr>
+            <td>871</td>
+            <td>五十嵐　未咲 / 小野田　桃花 / 土居　叶実 / 飯田　璃音</td>
+          </tr>
+          <tr>
+            <td>873</td>
+            <td>青山　唯 / 九嶋　琴音 / 今田　百香 / 鈴木　美羽</td>
+          </tr>
+        </table>
+>>>>>>> a6ddb9ac5b8e7c6d125c4f8dba364570d6a96c9f
       </div>
-    </nav>
 
-    <div class="container">
-      <!-- 部屋割表 -->
-      <section class="section">
-        <h2 class="section-title">🚪 部屋割表</h2>
-        <div class="card">
-          <table class="data-table">
-            <tr>
-              <th>男子</th>
-              <th>メンバー</th>
-            </tr>
-            <tr>
-              <td>859</td>
-              <td>稲垣 遥人 / 大沼 優弥 / 緒方 海斗 / 澤田 海翔</td>
-            </tr>
-            <tr>
-              <td>861</td>
-              <td>瀧本 渉 / 福澤 奎心 / 福士 潤 / 福士 諒</td>
-            </tr>
-            <tr>
-              <td>863</td>
-              <td>渡邊 祐斗 / 中井 映右 / 伊藤 澄 / 岩渕 哲朗</td>
-            </tr>
-            <tr>
-              <td>865</td>
-              <td>大亀 咲矢 / 近藤 楓馬 / 清野 朝陽</td>
-            </tr>
-            <tr>
-              <td>867</td>
-              <td>田中 雪斎 / 新田 涼太 / 深山 彰俊 / 山田 勇太</td>
-            </tr>
-            <tr>
-              <th>女子</th>
-              <th>メンバー</th>
-            </tr>
-            <tr>
-              <td>871</td>
-              <td>五十嵐 未咲 / 小野田 桃花 / 土居 叶実 / 飯田 璃音</td>
-            </tr>
-            <tr>
-              <td>873</td>
-              <td>青山 唯 / 九嶋 琴音 / 今田 百香 / 鈴木 美羽</td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="back-link">
-          <a href="index.html">← トップへ戻る</a>
-        </div>
-      </section>
-    </div>
-  </body>
+      <div class="back-link">
+        <a href="index.html">← トップへ戻る</a>
+      </div>
+    </section>
+  </div>
+</body>
 </html>
